@@ -15,17 +15,24 @@ import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import be.pxl.g_karate.api.ApiProxy;
+import be.pxl.g_karate.api.ExerciseRepo;
+import be.pxl.g_karate.api.models.Exercise;
+
 public class MainActivity extends AppCompatActivity {
 
     Map<Integer, Integer> circlesOnHumanBody;
 
-    List<Integer> handMomventsLeft;
-    List<Integer> handMomventsRight;
+    //List<Integer> handMomventsLeft;
+    //List<Integer> handMomventsRight;
 
     ImageView previousGestureLeft;
     ImageView previousGestureRight;
 
     int currentPlaceInList;
+
+    Exercise exercise1 = new Exercise(1);
+    ExerciseRepo repo = new ExerciseRepo(new ApiProxy());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,9 +49,23 @@ public class MainActivity extends AppCompatActivity {
         circlesOnHumanBody.put(7, R.id.knee_left);
         circlesOnHumanBody.put(8, R.id.knee_right);
 
-        handMomventsLeft = new ArrayList<>();
-        handMomventsRight = new ArrayList<>();
+        //handMomventsLeft = new ArrayList<>();
+        //handMomventsRight = new ArrayList<>();
 
+        exercise1.addHandMovementLeft(5);
+        exercise1.addHandMovementLeft(6);
+        exercise1.addHandMovementLeft(7);
+        exercise1.addHandMovementLeft(3);
+        exercise1.addHandMovementLeft(-1);
+
+        exercise1.addHandMovementRight(6);
+        exercise1.addHandMovementRight(7);
+        exercise1.addHandMovementRight(5);
+        exercise1.addHandMovementRight(4);
+        exercise1.addHandMovementRight(8);
+
+        repo.addExercise(exercise1);
+/*
         handMomventsLeft.add(1);
         handMomventsLeft.add(2);
         handMomventsLeft.add(5);
@@ -62,16 +83,16 @@ public class MainActivity extends AppCompatActivity {
         handMomventsRight.add(7);
         handMomventsRight.add(5);
         handMomventsRight.add(8);
-
+*/
         currentPlaceInList = 0;
 
         handleHandMovements();
     }
 
     public void handleHandMovements() {
-        for (int i = 0; i < handMomventsLeft.size(); i++) {
-            int currentPlaceLeft = handMomventsLeft.get(i);
-            int currentPlaceRight = handMomventsRight.get(i);
+        for (int i = 0; i < exercise1.getHandMovementsLeft().size(); i++) {
+            int currentPlaceLeft = exercise1.getHandMovementsLeft().get(i);
+            int currentPlaceRight = exercise1.getHandMovementsRight().get(i);
 
             //WIPE previous instructions
             if (previousGestureLeft != null) {
