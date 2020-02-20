@@ -8,19 +8,16 @@ import android.view.View;
 import android.widget.ImageView;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
 
     Map<Integer, Integer> circlesOnHumanBody;
 
-    List<Integer> handMomventsLeft;
-    List<Integer> handMomventsRight;
+    List<Integer> handMovementsLeft;
+    List<Integer> handMovementsRight;
 
     ImageView previousGestureLeft;
     ImageView previousGestureRight;
@@ -42,77 +39,80 @@ public class MainActivity extends AppCompatActivity {
         circlesOnHumanBody.put(7, R.id.knee_left);
         circlesOnHumanBody.put(8, R.id.knee_right);
 
-        handMomventsLeft = new ArrayList<>();
-        handMomventsRight = new ArrayList<>();
+        handMovementsLeft = new ArrayList<>();
+        handMovementsRight = new ArrayList<>();
 
-        handMomventsLeft.add(1);
-        handMomventsLeft.add(2);
-        handMomventsLeft.add(5);
-        handMomventsLeft.add(6);
-        handMomventsLeft.add(8);
-        handMomventsLeft.add(3);
-        handMomventsLeft.add(4);
-        handMomventsLeft.add(7);
+        handMovementsLeft.add(1);
+        handMovementsLeft.add(2);
+        handMovementsLeft.add(5);
+        handMovementsLeft.add(6);
+        handMovementsLeft.add(8);
+        handMovementsLeft.add(3);
+        handMovementsLeft.add(4);
+        handMovementsLeft.add(7);
 
-        handMomventsRight.add(6);
-        handMomventsRight.add(7);
-        handMomventsRight.add(6);
-        handMomventsRight.add(-1);
-        handMomventsRight.add(2);
-        handMomventsRight.add(7);
-        handMomventsRight.add(5);
-        handMomventsRight.add(8);
+        handMovementsRight.add(6);
+        handMovementsRight.add(7);
+        handMovementsRight.add(6);
+        handMovementsRight.add(-1);
+        handMovementsRight.add(2);
+        handMovementsRight.add(7);
+        handMovementsRight.add(5);
+        handMovementsRight.add(8);
 
         currentPlaceInList = 0;
 
-        handleHandMovements();
+        new Thread(() -> {
+            try {
+                while(currentPlaceInList < handMovementsLeft.size()) {
+                    runOnUiThread(this::handleHandMovements);
+                    Thread.sleep(5_000);
+                    currentPlaceInList++;
+                }
+            }
+            catch (Exception e){
+                System.err.println(e);
+            }
+        }).start();
     }
 
     public void handleHandMovements() {
-        for (int i = 0; i < handMomventsLeft.size(); i++) {
-            int currentPlaceLeft = handMomventsLeft.get(i);
-            int currentPlaceRight = handMomventsRight.get(i);
+        int currentPlaceLeft = handMovementsLeft.get(currentPlaceInList);
+        int currentPlaceRight = handMovementsRight.get(currentPlaceInList);
 
-            //WIPE previous instructions
-            if (previousGestureLeft != null) {
-                previousGestureLeft.setBackground(null);
-                previousGestureLeft.setImageIcon(null);
-                previousGestureLeft.setVisibility(View.INVISIBLE);
-            }
+        //WIPE previous instructions
+        if (previousGestureLeft != null) {
+            previousGestureLeft.setBackground(null);
+            previousGestureLeft.setImageIcon(null);
+            previousGestureLeft.setVisibility(View.INVISIBLE);
+        }
 
-            if (previousGestureRight != null) {
-                previousGestureRight.setBackground(null);
-                previousGestureRight.setImageIcon(null);
-                previousGestureRight.setVisibility(View.INVISIBLE);
-            }
+        if (previousGestureRight != null) {
+            previousGestureRight.setBackground(null);
+            previousGestureRight.setImageIcon(null);
+            previousGestureRight.setVisibility(View.INVISIBLE);
+        }
 
-            if (currentPlaceLeft != -1) {
-                ImageView currentGestureLeft = findViewById(circlesOnHumanBody.get(currentPlaceLeft));
-                currentGestureLeft.setImageIcon(Icon.createWithResource(this, R.drawable.ic_raincloud));
-                currentGestureLeft.setBackgroundResource(R.drawable.circle_red);
-                currentGestureLeft.setVisibility(View.VISIBLE);
+        if (currentPlaceLeft != -1) {
+            ImageView currentGestureLeft = findViewById(circlesOnHumanBody.get(currentPlaceLeft));
+            currentGestureLeft.setImageIcon(Icon.createWithResource(this, R.drawable.ic_raincloud));
+            currentGestureLeft.setBackgroundResource(R.drawable.circle_red);
+            currentGestureLeft.setVisibility(View.VISIBLE);
 
-                previousGestureLeft = currentGestureLeft;
-            } else {
-                previousGestureLeft = null;
-            }
+            previousGestureLeft = currentGestureLeft;
+        } else {
+            previousGestureLeft = null;
+        }
 
-            if (currentPlaceRight != -1) {
-                ImageView currentGestureRight = findViewById(circlesOnHumanBody.get(currentPlaceRight));
-                currentGestureRight.setImageIcon(Icon.createWithResource(this, R.drawable.ic_sun));
-                currentGestureRight.setBackgroundResource(R.drawable.circle_blue);
-                currentGestureRight.setVisibility(View.VISIBLE);
+        if (currentPlaceRight != -1) {
+            ImageView currentGestureRight = findViewById(circlesOnHumanBody.get(currentPlaceRight));
+            currentGestureRight.setImageIcon(Icon.createWithResource(this, R.drawable.ic_sun));
+            currentGestureRight.setBackgroundResource(R.drawable.circle_blue);
+            currentGestureRight.setVisibility(View.VISIBLE);
 
-                previousGestureRight = currentGestureRight;
-            } else {
-                previousGestureRight = null;
-            }
-
-//            try {
-//                Thread.sleep(5000);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
+            previousGestureRight = currentGestureRight;
+        } else {
+            previousGestureRight = null;
         }
     }
 
