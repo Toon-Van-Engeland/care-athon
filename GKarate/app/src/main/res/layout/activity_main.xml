@@ -27,9 +27,10 @@
         android:layout_height="70dp"
         android:layout_marginStart="92dp"
         android:layout_marginTop="76dp"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="@+id/human_main"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/circle" />
+        app:srcCompat="@drawable/circle_blue" />
 
     <ImageView
         android:id="@+id/ear_right"
@@ -37,9 +38,10 @@
         android:layout_height="70dp"
         android:layout_marginTop="76dp"
         android:layout_marginEnd="96dp"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="@+id/human_main"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/circle" />
+        app:srcCompat="@drawable/circle_red" />
 
     <ImageView
         android:id="@+id/shoulder_left"
@@ -47,9 +49,10 @@
         android:layout_height="70dp"
         android:layout_marginStart="92dp"
         android:layout_marginTop="160dp"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="@+id/human_main"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/circle" />
+        app:srcCompat="@drawable/circle_blue" />
 
     <ImageView
         android:id="@+id/heup_left"
@@ -57,19 +60,21 @@
         android:layout_height="70dp"
         android:layout_marginStart="92dp"
         android:layout_marginTop="304dp"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="@+id/human_main"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/circle" />
+        app:srcCompat="@drawable/circle_blue" />
 
     <ImageView
         android:id="@+id/heup_right"
         android:layout_width="55dp"
         android:layout_height="70dp"
+        android:visibility="invisible"
         android:layout_marginTop="308dp"
         android:layout_marginEnd="96dp"
         app:layout_constraintEnd_toEndOf="@+id/human_main"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/circle" />
+        app:srcCompat="@drawable/circle_red" />
 
     <ImageView
         android:id="@+id/knee_left"
@@ -77,9 +82,10 @@
         android:layout_height="70dp"
         android:layout_marginStart="92dp"
         android:layout_marginTop="376dp"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="@+id/human_main"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/circle" />
+        app:srcCompat="@drawable/circle_blue" />
 
 
     <ImageView
@@ -88,24 +94,27 @@
         android:layout_height="70dp"
         android:layout_marginTop="376dp"
         android:layout_marginEnd="96dp"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="@+id/human_main"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/circle" />
+        app:srcCompat="@drawable/circle_red" />
 
     <ImageView
         android:id="@+id/shoulder_right"
         android:layout_width="56dp"
         android:layout_height="69dp"
         android:layout_marginTop="160dp"
+        android:visibility="invisible"
         android:layout_marginEnd="96dp"
         app:layout_constraintEnd_toEndOf="@+id/human_main"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/circle" />
+        app:srcCompat="@drawable/circle_red" />
 
     <ImageView
         android:id="@+id/rightbox"
         android:layout_width="153dp"
         android:layout_height="126dp"
+        android:visibility="invisible"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
