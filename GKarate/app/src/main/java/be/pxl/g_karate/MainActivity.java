@@ -2,6 +2,7 @@ package be.pxl.g_karate;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
 import android.graphics.drawable.Icon;
 import android.os.Bundle;
 import android.view.View;
@@ -20,12 +21,22 @@ public class MainActivity extends AppCompatActivity {
 
     Map<Integer, Integer> circlesOnHumanBody;
     Map<Integer, Integer> numbersMap;
+    Map<Integer, Integer> iconMap;
+    Map<Integer, Integer> colorMap;
 
     //List<Integer> handMomventsLeft;
     //List<Integer> handMomventsRight;
 
     ImageView previousGestureLeft;
     ImageView previousGestureRight;
+
+    ImageView leftFootView;
+    ImageView leftFootNumberView;
+    ImageView leftFootIconView;
+
+    ImageView rightFootView;
+    ImageView rightFootNumberView;
+    ImageView rightFootIconView;
 
     int currentPlaceInList;
 
@@ -36,6 +47,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        leftFootView = findViewById(R.id.feet_left);
+        leftFootIconView = findViewById(R.id.feet_left_symbol);
+        leftFootNumberView = findViewById(R.id.feet_left_index);
+
+        rightFootView = findViewById(R.id.feet_right);
+        rightFootIconView = findViewById(R.id.feet_right_symbol);
+        rightFootNumberView = findViewById(R.id.feet_right_index);
 
         circlesOnHumanBody = new Hashtable<>();
         circlesOnHumanBody.put(1, R.id.ear_left);
@@ -57,8 +76,21 @@ public class MainActivity extends AppCompatActivity {
         numbersMap.put(7, R.drawable.ic_number_7);
         numbersMap.put(8, R.drawable.ic_number_8);
 
-        //handMomventsLeft = new ArrayList<>();
-        //handMomventsRight = new ArrayList<>();
+        iconMap = new Hashtable<>();
+        iconMap.put(1, R.drawable.ic_sun);
+        iconMap.put(2, R.drawable.ic_raincloud);
+        iconMap.put(3, R.drawable.ic_glasses);
+        iconMap.put(4, R.drawable.ic_umbrella);
+        iconMap.put(5, R.drawable.ic_flower);
+        iconMap.put(6, R.drawable.ic_hat);
+
+        colorMap = new Hashtable<>();
+        colorMap.put(1, Color.rgb(46,180,242));
+        colorMap.put(2, Color.rgb(224,54,62));
+        colorMap.put(3, Color.rgb(255,255,255));
+        colorMap.put(4, Color.rgb(69,189,60));
+        colorMap.put(5, Color.rgb(250,194,27));
+        colorMap.put(6, Color.rgb(251,255,0));
 
         exercise1.addHandMovementLeft(5);
         exercise1.addHandMovementLeft(6);
@@ -77,41 +109,27 @@ public class MainActivity extends AppCompatActivity {
         exercise1.addFootMovementsLeft(4);
         exercise1.addFootMovementsLeft(2);
         exercise1.addFootMovementsLeft(6);
+        exercise1.addFootMovementsLeft(2);
+        exercise1.addFootMovementsLeft(2);
 
         exercise1.addFootMovementsRight(1);
         exercise1.addFootMovementsRight(3);
         exercise1.addFootMovementsRight(-1);
         exercise1.addFootMovementsRight(1);
         exercise1.addFootMovementsRight(5);
+        exercise1.addFootMovementsRight(1);
+        exercise1.addFootMovementsRight(3);
 
-
-//        repo.addExercise(exercise1);
-/*
-        handMomventsLeft.add(1);
-        handMomventsLeft.add(2);
-        handMomventsLeft.add(5);
-        handMomventsLeft.add(6);
-        handMomventsLeft.add(8);
-        handMomventsLeft.add(3);
-        handMomventsLeft.add(4);
-        handMomventsLeft.add(7);
-
-        handMomventsRight.add(6);
-        handMomventsRight.add(7);
-        handMomventsRight.add(6);
-        handMomventsRight.add(-1);
-        handMomventsRight.add(2);
-        handMomventsRight.add(7);
-        handMomventsRight.add(5);
-        handMomventsRight.add(8);
-*/
+        repo.addExercise(exercise1);
 
         currentPlaceInList = 0;
 
         new Thread(() -> {
             try {
-                while(currentPlaceInList < exercise1.getHandMovementsLeft().size()) {
+                int maximumOfLists = Math.max(exercise1.getFootMovementsLeft().size(), exercise1.getHandMovementsLeft().size());
+                while(currentPlaceInList < maximumOfLists) {
                     runOnUiThread(this::handleHandMovements);
+                    runOnUiThread(this::handleFootMovements);
                     Thread.sleep(5_000);
                     currentPlaceInList++;
                 }
@@ -123,6 +141,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void handleHandMovements() {
+        if (currentPlaceInList >= exercise1.getHandMovementsLeft().size()) {
+            //WIPE previous instructions
+            if (previousGestureLeft != null) {
+                previousGestureLeft.setBackground(null);
+                previousGestureLeft.setImageIcon(null);
+                previousGestureLeft.setVisibility(View.INVISIBLE);
+            }
+
+            if (previousGestureRight != null) {
+                previousGestureRight.setBackground(null);
+                previousGestureRight.setImageIcon(null);
+                previousGestureRight.setVisibility(View.INVISIBLE);
+            }
+            return;
+        }
+
         int currentPlaceLeft = exercise1.getHandMovementsLeft().get(currentPlaceInList);
         int currentPlaceRight = exercise1.getHandMovementsRight().get(currentPlaceInList);
 
@@ -165,7 +199,34 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void handleFootMovements() {
+        if (currentPlaceInList >= exercise1.getFootMovementsLeft().size()) {
+            return;
+        }
 
+        int currentPlaceLeftFoot = exercise1.getFootMovementsLeft().get(currentPlaceInList);
+        int currentPlaceRightFoot = exercise1.getFootMovementsRight().get(currentPlaceInList);
+
+        //Set all icons of the left foot
+        if (currentPlaceLeftFoot != -1) {
+            leftFootView.setImageIcon(Icon.createWithResource(this, R.drawable.ic_left_footprint).setTint(colorMap.get(currentPlaceLeftFoot)));
+            leftFootNumberView.setImageIcon(Icon.createWithResource(this, numbersMap.get(currentPlaceLeftFoot)));
+            leftFootIconView.setImageIcon(Icon.createWithResource(this, iconMap.get(currentPlaceLeftFoot)));
+        } else {
+            leftFootView.setImageIcon(null);
+            leftFootNumberView.setImageIcon(null);
+            leftFootIconView.setImageIcon(null);
+        }
+
+        //Set all icons of the right foot
+        if (currentPlaceRightFoot != -1) {
+            rightFootView.setImageIcon(Icon.createWithResource(this, R.drawable.ic_right_footprint).setTint(colorMap.get(currentPlaceRightFoot)));
+            rightFootNumberView.setImageIcon(Icon.createWithResource(this, numbersMap.get(currentPlaceRightFoot)));
+            rightFootIconView.setImageIcon(Icon.createWithResource(this, iconMap.get(currentPlaceRightFoot)));
+        } else {
+            rightFootView.setImageIcon(null);
+            rightFootNumberView.setImageIcon(null);
+            rightFootIconView.setImageIcon(null);
+        }
     }
 
 

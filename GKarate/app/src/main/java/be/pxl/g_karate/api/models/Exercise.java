@@ -15,6 +15,8 @@ public class Exercise {
         this._id = id;
         handMovementsLeft = new ArrayList<>();
         handMovementsRight = new ArrayList<>();
+        footMovementsLeft = new ArrayList<>();
+        footMovementsRight = new ArrayList<>();
     }
 
     public int getId() {
