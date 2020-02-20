@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "169157990153",
+    "firebase_url": "https://gkarate-1cdf1.firebaseio.com",
+    "project_id": "gkarate-1cdf1",
+    "storage_bucket": "gkarate-1cdf1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:169157990153:android:8401f08be4b18a64a6a5d8",
+        "android_client_info": {
+          "package_name": "be.pxl.g_karate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "169157990153-v8duikjddmbd52r0hloagubfn5jqd508.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDEgcEe4HX2Z7hZL5DRgBXWjPhbeFK1PxU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "169157990153-v8duikjddmbd52r0hloagubfn5jqd508.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
