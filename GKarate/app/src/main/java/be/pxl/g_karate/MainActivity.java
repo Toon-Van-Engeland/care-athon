@@ -126,6 +126,7 @@ public class MainActivity extends AppCompatActivity {
             previousGestureRight.setVisibility(View.INVISIBLE);
         }
 
+        //Set left icon and cirkel on if gesture is needed
         if (currentPlaceLeft != -1) {
             ImageView currentGestureLeft = findViewById(circlesOnHumanBody.get(currentPlaceLeft));
             currentGestureLeft.setImageIcon(Icon.createWithResource(this, numbersMap.get(currentPlaceLeft)));
@@ -137,6 +138,7 @@ public class MainActivity extends AppCompatActivity {
             previousGestureLeft = null;
         }
 
+        //Set right icon and cirkel on if gesture is needed
         if (currentPlaceRight != -1) {
             ImageView currentGestureRight = findViewById(circlesOnHumanBody.get(currentPlaceRight));
             currentGestureRight.setImageIcon(Icon.createWithResource(this, numbersMap.get(currentPlaceRight)));
