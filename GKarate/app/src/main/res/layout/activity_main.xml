@@ -117,24 +117,24 @@
 
     <ImageView
         android:id="@+id/rightbox"
-        android:layout_width="152dp"
-        android:layout_height="153dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_width="193dp"
+        android:layout_height="187dp"
+        android:layout_marginTop="484dp"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/human_main"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/rectangle_right" />
 
     <ImageView
         android:id="@+id/leftbox"
-        android:layout_width="163dp"
-        android:layout_height="161dp"
-        android:layout_marginTop="12dp"
+        android:layout_width="193dp"
+        android:layout_height="187dp"
+        android:layout_marginTop="484dp"
         android:layout_marginEnd="60dp"
         app:layout_constraintEnd_toStartOf="@+id/rightbox"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/human_main"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/rectangle_left" />
 
     <ImageView
