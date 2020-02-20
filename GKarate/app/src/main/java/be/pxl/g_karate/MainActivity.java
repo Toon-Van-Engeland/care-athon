@@ -72,7 +72,20 @@ public class MainActivity extends AppCompatActivity {
         exercise1.addHandMovementRight(4);
         exercise1.addHandMovementRight(8);
 
-        repo.addExercise(exercise1);
+        exercise1.addFootMovementsLeft(2);
+        exercise1.addFootMovementsLeft(-1);
+        exercise1.addFootMovementsLeft(4);
+        exercise1.addFootMovementsLeft(2);
+        exercise1.addFootMovementsLeft(6);
+
+        exercise1.addFootMovementsRight(1);
+        exercise1.addFootMovementsRight(3);
+        exercise1.addFootMovementsRight(-1);
+        exercise1.addFootMovementsRight(1);
+        exercise1.addFootMovementsRight(5);
+
+
+//        repo.addExercise(exercise1);
 /*
         handMomventsLeft.add(1);
         handMomventsLeft.add(2);
@@ -149,6 +162,10 @@ public class MainActivity extends AppCompatActivity {
         } else {
             previousGestureRight = null;
         }
+    }
+
+    public void handleFootMovements() {
+
     }
 
 
