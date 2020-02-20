@@ -15,6 +15,7 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
 
     Map<Integer, Integer> circlesOnHumanBody;
+    Map<Integer, Integer> numbersMap;
 
     List<Integer> handMovementsLeft;
     List<Integer> handMovementsRight;
@@ -30,14 +31,24 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         circlesOnHumanBody = new Hashtable<>();
-        circlesOnHumanBody.put(1, R.id.ear_left);
-        circlesOnHumanBody.put(2, R.id.ear_right);
-        circlesOnHumanBody.put(3, R.id.shoulder_left);
-        circlesOnHumanBody.put(4, R.id.shoulder_right);
-        circlesOnHumanBody.put(5, R.id.heup_left);
-        circlesOnHumanBody.put(6, R.id.heup_right);
-        circlesOnHumanBody.put(7, R.id.knee_left);
-        circlesOnHumanBody.put(8, R.id.knee_right);
+        circlesOnHumanBody.put(1, R.id.knee_left);
+        circlesOnHumanBody.put(2, R.id.knee_right);
+        circlesOnHumanBody.put(3, R.id.heup_left);
+        circlesOnHumanBody.put(4, R.id.heup_right);
+        circlesOnHumanBody.put(5, R.id.shoulder_left);
+        circlesOnHumanBody.put(6, R.id.shoulder_right);
+        circlesOnHumanBody.put(7, R.id.ear_left);
+        circlesOnHumanBody.put(8, R.id.ear_right);
+
+        numbersMap = new Hashtable<>();
+        numbersMap.put(1, R.drawable.ic_number_1);
+        numbersMap.put(2, R.drawable.ic_number_2);
+        numbersMap.put(3, R.drawable.ic_number_3);
+        numbersMap.put(4, R.drawable.ic_number_4);
+        numbersMap.put(5, R.drawable.ic_number_5);
+        numbersMap.put(6, R.drawable.ic_number_6);
+        numbersMap.put(7, R.drawable.ic_number_7);
+        numbersMap.put(8, R.drawable.ic_number_8);
 
         handMovementsLeft = new ArrayList<>();
         handMovementsRight = new ArrayList<>();
@@ -95,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (currentPlaceLeft != -1) {
             ImageView currentGestureLeft = findViewById(circlesOnHumanBody.get(currentPlaceLeft));
-            currentGestureLeft.setImageIcon(Icon.createWithResource(this, R.drawable.ic_raincloud));
+            currentGestureLeft.setImageIcon(Icon.createWithResource(this, numbersMap.get(currentPlaceLeft)));
             currentGestureLeft.setBackgroundResource(R.drawable.circle_red);
             currentGestureLeft.setVisibility(View.VISIBLE);
 
@@ -106,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (currentPlaceRight != -1) {
             ImageView currentGestureRight = findViewById(circlesOnHumanBody.get(currentPlaceRight));
-            currentGestureRight.setImageIcon(Icon.createWithResource(this, R.drawable.ic_sun));
+            currentGestureRight.setImageIcon(Icon.createWithResource(this, numbersMap.get(currentPlaceRight)));
             currentGestureRight.setBackgroundResource(R.drawable.circle_blue);
             currentGestureRight.setVisibility(View.VISIBLE);
 
