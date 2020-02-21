@@ -251,6 +251,24 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/name_ex"
+            android:layout_width="73dp"
+            android:layout_height="34dp"
+            android:layout_marginTop="8dp"
+            android:text="excersise name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/new_button" />
+
+        <TextView
+            android:id="@+id/round_number"
+            android:layout_width="74dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="28dp"
+            android:text="round"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/name_ex" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
