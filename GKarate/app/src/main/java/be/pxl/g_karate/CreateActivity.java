@@ -38,7 +38,6 @@ public class CreateActivity  extends AppCompatActivity {
         setContentView(R.layout.activity_create);
         initPagerLeftFood();
         initPagerRightFood();
-        initPager();
 
         circlesOnHumanBody = new Hashtable<>();
         circlesOnHumanBody.put(1, R.id.ear_left);
@@ -101,9 +100,6 @@ public class CreateActivity  extends AppCompatActivity {
         currentRighttSelection = 0;
     }
 
-    private void initPager() {
-        mViewPager = findViewById(R.id.left_food_pager);
-
     private void initPagerRightFood() {
         mViewerRightFood = findViewById(R.id.right_food_pager);
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
@@ -153,6 +149,7 @@ public class CreateActivity  extends AppCompatActivity {
             return mTitleList.get(position);
         }
     }
+
     public static class ForLeftFood extends Fragment {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
@@ -170,6 +167,7 @@ public class CreateActivity  extends AppCompatActivity {
             return v;
         }
     }
+
     public static class TwoLeftFood extends Fragment {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
@@ -183,6 +181,7 @@ public class CreateActivity  extends AppCompatActivity {
             return v;
         }
     }
+
     public static class SixLeftFood extends Fragment {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
@@ -196,6 +195,7 @@ public class CreateActivity  extends AppCompatActivity {
             return v;
         }
     }
+
     public static class ForFragment extends Fragment {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
