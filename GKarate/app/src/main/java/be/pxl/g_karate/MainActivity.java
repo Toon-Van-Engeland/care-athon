@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.drawable.Icon;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -29,7 +30,8 @@ public class MainActivity extends AppCompatActivity {
 
     int currentPlaceInList;
 
-    Exercise exercise1 = new Exercise(1);
+    Exercise exercise1 = new Exercise();
+    Exercise test;
     ExerciseRepo repo = new ExerciseRepo(new ApiProxy());
 
     @Override
@@ -92,26 +94,40 @@ public class MainActivity extends AppCompatActivity {
         handMomventsRight.add(5);
         handMomventsRight.add(8);
 */
-
         currentPlaceInList = 0;
 
-        new Thread(() -> {
-            try {
-                while(currentPlaceInList < exercise1.getHandMovementsLeft().size()) {
-                    runOnUiThread(this::handleHandMovements);
-                    Thread.sleep(5_000);
-                    currentPlaceInList++;
+        try {
+            Thread dataThread = new Thread(() -> {
+                try {
+                    repo.getExercises();
+                } catch (Exception e) {
+                    System.err.println(e);
                 }
-            }
-            catch (Exception e){
-                System.err.println(e);
-            }
-        }).start();
+            });
+            dataThread.start();
+            dataThread.join();
+            System.out.println("EXERCISE LIST MAIN = " + ExerciseRepo.getExercisesList().size());
+            test = ExerciseRepo.getExercisesList().get(2);
+            Thread uiThread = new Thread(() -> {
+                try {
+                    while (currentPlaceInList < test.getHandMovementsLeft().size()) {
+                        runOnUiThread(this::handleHandMovements);
+                        Thread.sleep(5_000);
+                        currentPlaceInList++;
+                    }
+                } catch (Exception e) {
+                    System.err.println(e);
+                }
+            });
+            uiThread.start();
+        } catch (InterruptedException e) {
+            System.err.println(e);
+        }
     }
 
     public void handleHandMovements() {
-        int currentPlaceLeft = exercise1.getHandMovementsLeft().get(currentPlaceInList);
-        int currentPlaceRight = exercise1.getHandMovementsRight().get(currentPlaceInList);
+        int currentPlaceLeft = test.getHandMovementsLeft().get(currentPlaceInList);
+        int currentPlaceRight = test.getHandMovementsRight().get(currentPlaceInList);
 
         //WIPE previous instructions
         if (previousGestureLeft != null) {

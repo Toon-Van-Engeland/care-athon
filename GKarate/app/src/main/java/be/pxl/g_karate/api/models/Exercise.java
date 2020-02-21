@@ -5,18 +5,12 @@ import java.util.List;
 
 public class Exercise {
 
-    private int _id;
     private List<Integer> handMovementsLeft;
     private List<Integer> handMovementsRight;
 
-    public Exercise(int id) {
-        this._id = id;
+    public Exercise() {
         handMovementsLeft = new ArrayList<>();
         handMovementsRight = new ArrayList<>();
-    }
-
-    public int getId() {
-        return this._id;
     }
 
     public void addHandMovementLeft(int placement) {

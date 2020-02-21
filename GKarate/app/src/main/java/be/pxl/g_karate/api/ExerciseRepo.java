@@ -1,8 +1,18 @@
 package be.pxl.g_karate.api;
 
+import android.util.Log;
+import android.view.inputmethod.InputMethodSession;
+
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicReference;
 
 import be.pxl.g_karate.api.models.Exercise;
@@ -10,6 +20,7 @@ import be.pxl.g_karate.api.models.Exercise;
 public class ExerciseRepo {
 
     private FirebaseFirestore _db;
+    private static List<Exercise> exercises = new ArrayList<>();
 
     public ExerciseRepo(ApiProxy proxy) {
         _db = proxy.getDb();
@@ -22,21 +33,30 @@ public class ExerciseRepo {
                 .addOnFailureListener(ex -> System.out.println(ex.getMessage()));
     }
 
-    public Exercise getExercise(int id) {
-        AtomicReference<Exercise> result = new AtomicReference();
-        _db.collection("exercises")
-                .get().addOnCompleteListener(snapshot -> {
-                    if (snapshot.isSuccessful()) {
-                        for (QueryDocumentSnapshot doc : snapshot.getResult()) {
-                            if (Integer.getInteger(doc.getId()) == id) {
-                                result.set((Exercise)doc.getData());
-                            }
-                        }
-                    } else  {
-                        result.set(null);
-                        System.out.println("No exercise found with current id!");
-                    }
+    public void getExercises() {
+        Exercise result = new Exercise();
+        CollectionReference collRef = _db.collection("exercises");
+        collRef.get().addOnCompleteListener(querySnapshot -> {
+            if (querySnapshot.isSuccessful()) {
+                for (QueryDocumentSnapshot doc: querySnapshot.getResult()) {
+                    Exercise exercise = doc.toObject(Exercise.class);
+                    exercises.add(exercise);
+                }
+                System.out.println("LIST SIZE = " + exercises.size());
+                /*
+                List<Integer> handMovLeft = task.getResult().toObject(Exercise.class).getHandMovementsLeft();
+                List<Integer> handMovRight = task.getResult().toObject(Exercise.class).getHandMovementsRight();
+                for (int i = 0; i < handMovLeft.size(); i++) {
+                    result.addHandMovementLeft(handMovLeft.get(i));
+                    result.addHandMovementRight(handMovRight.get(i));
+                }
+                */
+            }
         });
-        return result.get();
     }
+
+    public static List<Exercise> getExercisesList() {
+        return exercises;
+    }
+
 }
