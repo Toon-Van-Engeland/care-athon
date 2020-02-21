@@ -108,9 +108,9 @@
             android:layout_width="193dp"
             android:layout_height="187dp"
             android:layout_marginTop="492dp"
-            android:layout_marginEnd="60dp"
-            app:layout_constraintEnd_toStartOf="@+id/rightbox"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/recyclerView"
+            app:layout_constraintHorizontal_bias="0.028"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/rectangle_left" />
@@ -157,40 +157,12 @@
             app:srcCompat="@drawable/circle" />
 
         <ImageView
-            android:id="@+id/feet_left"
-            android:layout_width="163dp"
-            android:layout_height="164dp"
-            app:layout_constraintBottom_toBottomOf="@+id/leftbox"
-            app:layout_constraintEnd_toEndOf="@+id/leftbox"
-            app:layout_constraintStart_toStartOf="@+id/leftbox"
-            app:layout_constraintTop_toTopOf="@+id/leftbox"
-            app:layout_constraintVertical_bias="0.652"
-            app:srcCompat="@drawable/ic_left_footprint" />
-
-        <ImageView
-            android:id="@+id/feet_left_symbol"
-            android:layout_width="63dp"
-            android:layout_height="81dp"
-            android:layout_marginTop="40dp"
-            app:layout_constraintEnd_toEndOf="@+id/feet_left"
-            app:layout_constraintTop_toTopOf="@+id/feet_left"
-            app:srcCompat="@drawable/circle" />
-
-        <ImageView
             android:id="@+id/feet_right_symbol"
             android:layout_width="63dp"
             android:layout_height="81dp"
             android:layout_marginTop="48dp"
             app:layout_constraintStart_toStartOf="@+id/feet_right"
             app:layout_constraintTop_toTopOf="@+id/feet_right"
-            app:srcCompat="@drawable/circle" />
-
-        <ImageView
-            android:id="@+id/feet_left_index"
-            android:layout_width="56dp"
-            android:layout_height="81dp"
-            app:layout_constraintBottom_toBottomOf="@+id/feet_left"
-            app:layout_constraintStart_toStartOf="@+id/feet_left"
             app:srcCompat="@drawable/circle" />
 
         <ImageView
@@ -216,10 +188,10 @@
             app:srcCompat="@drawable/circle_red" />
 
         <Button
-            android:id="@+id/new_button"
+            android:id="@+id/save"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="new"
+            android:text="Save"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -231,7 +203,7 @@
             android:text="next"
             app:layout_constraintEnd_toStartOf="@+id/delete_button"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/new_button"
+            app:layout_constraintStart_toEndOf="@+id/save"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
@@ -258,7 +230,7 @@
             android:layout_marginTop="8dp"
             android:text="excersise name"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/new_button" />
+            app:layout_constraintTop_toBottomOf="@+id/save" />
 
         <TextView
             android:id="@+id/round_number"
@@ -268,6 +240,16 @@
             android:text="round"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/name_ex" />
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/left_food_pager"
+            android:layout_width="170dp"
+            android:layout_height="160dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="@+id/leftbox"
+            app:layout_constraintHorizontal_bias="0.304"
+            app:layout_constraintStart_toStartOf="@+id/leftbox"
+            app:layout_constraintTop_toTopOf="@+id/leftbox" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
