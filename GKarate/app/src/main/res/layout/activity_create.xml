@@ -165,14 +165,17 @@
             android:background="@drawable/circle_blue" />
 
         <Button
+            android:onClick="save"
             android:id="@+id/save"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Save"
+            android:enabled="false"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
+            android:onClick="next"
             android:id="@+id/next_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -194,31 +197,31 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
+            android:onClick="preview"
             android:id="@+id/preview_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="preview"
-            android:enabled="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/name_ex"
-            android:layout_width="73dp"
-            android:layout_height="34dp"
-            android:layout_marginTop="8dp"
-            android:text="excersise name"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/save" />
+<!--        <TextView-->
+<!--            android:id="@+id/name_ex"-->
+<!--            android:layout_width="73dp"-->
+<!--            android:layout_height="34dp"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            android:text="excersise name"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/save" />-->
 
-        <TextView
-            android:id="@+id/round_number"
-            android:layout_width="74dp"
-            android:layout_height="24dp"
-            android:layout_marginTop="28dp"
-            android:text="round"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/name_ex" />
+<!--        <TextView-->
+<!--            android:id="@+id/round_number"-->
+<!--            android:layout_width="74dp"-->
+<!--            android:layout_height="24dp"-->
+<!--            android:layout_marginTop="28dp"-->
+<!--            android:text="round"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/name_ex" />-->
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/left_food_pager"

@@ -99,17 +99,58 @@ public class MainActivity extends AppCompatActivity {
         colorMap.put(5, Color.rgb(250,194,27));
         colorMap.put(6, Color.rgb(251,255,0));
 
-        exercise1.addHandMovementLeft(5);
-        exercise1.addHandMovementLeft(5);
-        exercise1.addHandMovementLeft(7);
-        exercise1.addHandMovementLeft(3);
-        exercise1.addHandMovementLeft(-1);
+        if (getIntent().hasExtra("exerciseLeftHand")) {
+            int[] leftHand = getIntent().getIntArrayExtra("exerciseLeftHand");
+            int[] leftFoot = getIntent().getIntArrayExtra("exerciseLeftFoot");
+            int[] rightHand = getIntent().getIntArrayExtra("exerciseRightHand");
+            int[] rightFoot = getIntent().getIntArrayExtra("exerciseRightFoot");
 
-        exercise1.addHandMovementRight(6);
-        exercise1.addHandMovementRight(7);
-        exercise1.addHandMovementRight(5);
-        exercise1.addHandMovementRight(4);
-        exercise1.addHandMovementRight(8);
+            for (int leftHandItem : leftHand) {
+                exercise1.addHandMovementLeft(leftHandItem);
+            }
+
+            for (int leftHandItem : leftFoot) {
+                exercise1.addFootMovementsLeft(leftHandItem);
+            }
+
+            for (int leftHandItem : rightHand) {
+                exercise1.addHandMovementRight(leftHandItem);
+            }
+
+            for (int leftHandItem : rightFoot) {
+                exercise1.addFootMovementsRight(leftHandItem);
+            }
+        } else {
+            exercise1.addHandMovementLeft(5);
+            exercise1.addHandMovementLeft(5);
+            exercise1.addHandMovementLeft(7);
+            exercise1.addHandMovementLeft(3);
+            exercise1.addHandMovementLeft(-1);
+
+            exercise1.addHandMovementRight(6);
+            exercise1.addHandMovementRight(7);
+            exercise1.addHandMovementRight(5);
+            exercise1.addHandMovementRight(4);
+            exercise1.addHandMovementRight(8);
+
+            exercise1.addFootMovementsLeft(2);
+            exercise1.addFootMovementsLeft(-1);
+            exercise1.addFootMovementsLeft(4);
+            exercise1.addFootMovementsLeft(2);
+            exercise1.addFootMovementsLeft(6);
+            exercise1.addFootMovementsLeft(2);
+            exercise1.addFootMovementsLeft(2);
+
+            exercise1.addFootMovementsRight(1);
+            exercise1.addFootMovementsRight(3);
+            exercise1.addFootMovementsRight(-1);
+            exercise1.addFootMovementsRight(1);
+            exercise1.addFootMovementsRight(5);
+            exercise1.addFootMovementsRight(1);
+            exercise1.addFootMovementsRight(3);
+        }
+
+
 
 //        repo.addExercise(exercise1);
 /*
@@ -133,47 +174,33 @@ public class MainActivity extends AppCompatActivity {
 */
         currentPlaceInList = 0;
 
-        try {
-            Thread dataThread = new Thread(() -> {
-                try {
-                    repo.getExercises();
-                } catch (Exception e) {
-                    System.err.println(e);
-                }
-            });
-            dataThread.start();
-            dataThread.join();
-            System.out.println("EXERCISE LIST MAIN = " + ExerciseRepo.getExercisesList().size());
-            test = ExerciseRepo.getExercisesList().get(2);
-            Thread uiThread = new Thread(() -> {
-                try {
-                    while (currentPlaceInList < test.getHandMovementsLeft().size()) {
-                        runOnUiThread(this::handleHandMovements);
-                        Thread.sleep(5_000);
-                        currentPlaceInList++;
-                    }
-                } catch (Exception e) {
-                    System.err.println(e);
-                }
-            });
-        } catch (InterruptedException e) {
-            System.err.println(e);
-        }
-        exercise1.addFootMovementsLeft(2);
-        exercise1.addFootMovementsLeft(-1);
-        exercise1.addFootMovementsLeft(4);
-        exercise1.addFootMovementsLeft(2);
-        exercise1.addFootMovementsLeft(6);
-        exercise1.addFootMovementsLeft(2);
-        exercise1.addFootMovementsLeft(2);
+//        try {
+//            Thread dataThread = new Thread(() -> {
+//                try {
+//                    repo.getExercises();
+//                } catch (Exception e) {
+//                    System.err.println(e);
+//                }
+//            });
+//            dataThread.start();
+//            dataThread.join();
+//            System.out.println("EXERCISE LIST MAIN = " + ExerciseRepo.getExercisesList().size());
+//            test = ExerciseRepo.getExercisesList().get(2);
+//            Thread uiThread = new Thread(() -> {
+//                try {
+//                    while (currentPlaceInList < test.getHandMovementsLeft().size()) {
+//                        runOnUiThread(this::handleHandMovements);
+//                        Thread.sleep(5_000);
+//                        currentPlaceInList++;
+//                    }
+//                } catch (Exception e) {
+//                    System.err.println(e);
+//                }
+//            });
+//        } catch (InterruptedException e) {
+//            System.err.println(e);
+//        }
 
-        exercise1.addFootMovementsRight(1);
-        exercise1.addFootMovementsRight(3);
-        exercise1.addFootMovementsRight(-1);
-        exercise1.addFootMovementsRight(1);
-        exercise1.addFootMovementsRight(5);
-        exercise1.addFootMovementsRight(1);
-        exercise1.addFootMovementsRight(3);
 
 //        repo.addExercise(exercise1);
 
@@ -191,7 +218,7 @@ public class MainActivity extends AppCompatActivity {
             } catch (Exception e) {
 
             }
-        });
+        }).start();
     }
 
     public void handleHandMovements() {
@@ -283,7 +310,7 @@ public class MainActivity extends AppCompatActivity {
                 leftFootIconView.setImageIcon(Icon.createWithResource(this, iconMap.get(currentPlaceLeftFoot)));
             }
         } else {
-            leftFootView.setImageIcon(null);
+            leftFootView.setImageIcon(Icon.createWithResource(this, R.drawable.ic_right_footprint).setTint(Color.GRAY));
             leftFootNumberView.setImageIcon(null);
             leftFootIconView.setImageIcon(null);
         }
@@ -300,7 +327,7 @@ public class MainActivity extends AppCompatActivity {
                 rightFootIconView.setImageIcon(Icon.createWithResource(this, iconMap.get(currentPlaceRightFoot)));
             }
         } else {
-            rightFootView.setImageIcon(null);
+            rightFootView.setImageIcon(Icon.createWithResource(this, R.drawable.ic_right_footprint).setTint(Color.GRAY));
             rightFootNumberView.setImageIcon(null);
             rightFootIconView.setImageIcon(null);
         }

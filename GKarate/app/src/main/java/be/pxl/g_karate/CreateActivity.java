@@ -1,5 +1,6 @@
 package be.pxl.g_karate;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Icon;
 import android.os.Bundle;
@@ -19,15 +20,17 @@ import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 
+import be.pxl.g_karate.api.models.Exercise;
+
 public class CreateActivity  extends AppCompatActivity {
+
+    Exercise exercise;
 
     private ViewPager mViewPagerLeftFood;
     private ViewPager mViewerRightFood;
 
-
-
     public int currentLeftSelection;
-    public int currentRighttSelection;
+    public int currentRightSelection;
 
     Map<Integer, Integer> circlesOnHumanBody;
     Map<Integer, Integer> numbersMap;
@@ -38,6 +41,8 @@ public class CreateActivity  extends AppCompatActivity {
         setContentView(R.layout.activity_create);
         initPagerLeftFood();
         initPagerRightFood();
+
+        exercise = new Exercise();
 
         circlesOnHumanBody = new Hashtable<>();
         circlesOnHumanBody.put(1, R.id.ear_left);
@@ -76,13 +81,13 @@ public class CreateActivity  extends AppCompatActivity {
             });
             findViewById(circlesOnHumanBody.get(selection)).setBackgroundResource(R.drawable.circle_red_yellow_border);
             currentLeftSelection = 0;
-            currentRighttSelection = selection;
+            currentRightSelection = selection;
             return;
         }
-        if (currentRighttSelection == selection) {
+        if (currentRightSelection == selection) {
             System.out.println("rightSelection");
             findViewById(circlesOnHumanBody.get(selection)).setBackgroundResource(R.drawable.circle_blue);
-            currentRighttSelection = 0;
+            currentRightSelection = 0;
             return;
         }
         view.setBackgroundResource(R.drawable.circle_blue_yellow_border);
@@ -97,14 +102,74 @@ public class CreateActivity  extends AppCompatActivity {
             findViewById(id).setBackgroundResource(R.drawable.circle_blue);
         });
         currentLeftSelection = 0;
-        currentRighttSelection = 0;
+        currentRightSelection = 0;
+        mViewPagerLeftFood.setCurrentItem(3);
+        mViewerRightFood.setCurrentItem(3);
+    }
+
+    public void next(View view) {
+        int footnumberLeft = (mViewPagerLeftFood.getCurrentItem() + 1) * 2;
+        int footnumberRight = ((mViewerRightFood.getCurrentItem() + 1) * 2) - 1;
+        if (footnumberLeft > 6) {
+            footnumberLeft = -1;
+        }
+        if (footnumberRight > 5) {
+            footnumberRight = -1;
+        }
+        exercise.addFootMovementsRight(footnumberRight);
+        exercise.addFootMovementsLeft(footnumberLeft);
+        if (currentLeftSelection != 0) {
+            exercise.addHandMovementRight(currentLeftSelection);
+        } else {
+            exercise.addHandMovementRight(-1);
+        }
+        if (currentRightSelection != 0) {
+            exercise.addHandMovementLeft(currentRightSelection);
+        } else {
+            exercise.addHandMovementLeft(-1);
+        }
+
+        clear(view);
+    }
+
+    public void preview(View view) {
+        int[] leftHand = new int[exercise.getHandMovementsLeft().size()];
+        for (int i = 0; i < exercise.getHandMovementsLeft().size(); i++) {
+            leftHand[i] = exercise.getHandMovementsLeft().get(i);
+        }
+
+        int[] leftFoot = new int[exercise.getFootMovementsLeft().size()];
+        for (int i = 0; i < exercise.getFootMovementsLeft().size(); i++) {
+            leftFoot[i] = exercise.getFootMovementsLeft().get(i);
+        }
+
+        int[] rightHand = new int[exercise.getHandMovementsRight().size()];
+        for (int i = 0; i < exercise.getHandMovementsRight().size(); i++) {
+            rightHand[i] = exercise.getHandMovementsRight().get(i);
+        }
+
+        int[] rightFoot = new int[exercise.getFootMovementsRight().size()];
+        for (int i = 0; i < exercise.getFootMovementsRight().size(); i++) {
+            rightFoot[i] = exercise.getFootMovementsRight().get(i);
+        }
+
+        Intent intent = new Intent(CreateActivity.this, MainActivity.class);
+        intent.putExtra("exerciseLeftHand", leftHand);
+        intent.putExtra("exerciseLeftFoot", leftFoot);
+        intent.putExtra("exerciseRightHand", rightHand);
+        intent.putExtra("exerciseRightFoot", rightFoot);
+        startActivity(intent);
+    }
+
+    public void save(View view) {
+
     }
 
     private void initPagerRightFood() {
         mViewerRightFood = findViewById(R.id.right_food_pager);
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new ThreeRightFoot(), "Three_Right");
         adapter.addFragment(new OneRightFoot(), "One_Right");
+        adapter.addFragment(new ThreeRightFoot(), "Three_Right");
         adapter.addFragment(new FiveRightFoot(), "Five_Right");
         adapter.addFragment(new GrayRightFragment(), "Gray_Right");
         mViewerRightFood.setAdapter(adapter);
@@ -113,8 +178,8 @@ public class CreateActivity  extends AppCompatActivity {
     private void initPagerLeftFood() {
         mViewPagerLeftFood = findViewById(R.id.left_food_pager);
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        adapter.addFragment(new TwoLeftFood(), "One_Right");
         adapter.addFragment(new ForLeftFood(), "Four_Left");
-        adapter.addFragment(new TwoLeftFood(), "Two_Left");
         adapter.addFragment(new SixLeftFood(), "Six_Left");
         adapter.addFragment(new ForFragment(), "gray_left");
 
