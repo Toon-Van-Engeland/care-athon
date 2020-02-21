@@ -15,7 +15,9 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
+import java.util.Map;
 
 public class CreateActivity  extends AppCompatActivity {
 
@@ -23,13 +25,84 @@ public class CreateActivity  extends AppCompatActivity {
     private ViewPager mViewerRightFood;
 
 
+
+    public int currentLeftSelection;
+    public int currentRighttSelection;
+
+    Map<Integer, Integer> circlesOnHumanBody;
+    Map<Integer, Integer> numbersMap;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create);
         initPagerLeftFood();
         initPagerRightFood();
+        initPager();
+
+        circlesOnHumanBody = new Hashtable<>();
+        circlesOnHumanBody.put(1, R.id.ear_left);
+        circlesOnHumanBody.put(2, R.id.ear_right);
+        circlesOnHumanBody.put(3, R.id.shoulder_left);
+        circlesOnHumanBody.put(4, R.id.shoulder_right);
+        circlesOnHumanBody.put(5, R.id.heup_left);
+        circlesOnHumanBody.put(6, R.id.heup_right);
+        circlesOnHumanBody.put(7, R.id.knee_left);
+        circlesOnHumanBody.put(8, R.id.knee_right);
+
+        numbersMap = new Hashtable<>();
+        numbersMap.put(1, R.drawable.ic_number_1);
+        numbersMap.put(2, R.drawable.ic_number_2);
+        numbersMap.put(3, R.drawable.ic_number_3);
+        numbersMap.put(4, R.drawable.ic_number_4);
+        numbersMap.put(5, R.drawable.ic_number_5);
+        numbersMap.put(6, R.drawable.ic_number_6);
+        numbersMap.put(7, R.drawable.ic_number_7);
+        numbersMap.put(8, R.drawable.ic_number_8);
+
+        for (int i = 1; i <= 8; i++) {
+            ((ImageView) findViewById(circlesOnHumanBody.get(i))).setImageIcon(Icon.createWithResource(this, numbersMap.get(i)));
+        }
     }
+
+    public void keyPointClickHandler(View view) {
+        int selection = Integer.parseInt(view.getContentDescription().toString());
+        System.out.println(selection);
+        if (currentLeftSelection == selection) {
+            System.out.println("leftSelection");
+            circlesOnHumanBody.values().forEach((id) -> {
+                if (id != currentLeftSelection) {
+                    findViewById(id).setBackgroundResource(R.drawable.circle_blue);
+                }
+            });
+            findViewById(circlesOnHumanBody.get(selection)).setBackgroundResource(R.drawable.circle_red_yellow_border);
+            currentLeftSelection = 0;
+            currentRighttSelection = selection;
+            return;
+        }
+        if (currentRighttSelection == selection) {
+            System.out.println("rightSelection");
+            findViewById(circlesOnHumanBody.get(selection)).setBackgroundResource(R.drawable.circle_blue);
+            currentRighttSelection = 0;
+            return;
+        }
+        view.setBackgroundResource(R.drawable.circle_blue_yellow_border);
+        if (currentLeftSelection != 0) {
+            findViewById(circlesOnHumanBody.get(currentLeftSelection)).setBackgroundResource(R.drawable.circle_blue);
+        }
+        currentLeftSelection = selection;
+    }
+
+    public void clear(View view) {
+        circlesOnHumanBody.values().forEach((id) -> {
+            findViewById(id).setBackgroundResource(R.drawable.circle_blue);
+        });
+        currentLeftSelection = 0;
+        currentRighttSelection = 0;
+    }
+
+    private void initPager() {
+        mViewPager = findViewById(R.id.left_food_pager);
 
     private void initPagerRightFood() {
         mViewerRightFood = findViewById(R.id.right_food_pager);
@@ -51,24 +124,30 @@ public class CreateActivity  extends AppCompatActivity {
 
         mViewPagerLeftFood.setAdapter(adapter);
     }
+
     class ViewPagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> mList = new ArrayList<>();
         private final List<String> mTitleList = new ArrayList<>();
+
         public ViewPagerAdapter(FragmentManager supportFragmentManager) {
             super(supportFragmentManager);
         }
+
         @Override
         public Fragment getItem(int i) {
             return mList.get(i);
         }
+
         @Override
         public int getCount() {
             return mList.size();
         }
+
         public void addFragment(Fragment fragment, String title) {
             mList.add(fragment);
             mTitleList.add(title);
         }
+
         @Override
         public CharSequence getPageTitle(int position) {
             return mTitleList.get(position);

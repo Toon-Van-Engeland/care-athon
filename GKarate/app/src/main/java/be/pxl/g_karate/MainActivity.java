@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
         exercise1.addHandMovementRight(4);
         exercise1.addHandMovementRight(8);
 
-        repo.addExercise(exercise1);
+//        repo.addExercise(exercise1);
 /*
         handMomventsLeft.add(1);
         handMomventsLeft.add(2);
