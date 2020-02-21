@@ -2,7 +2,6 @@ package be.pxl.g_karate;
 
 import android.graphics.Color;
 import android.graphics.drawable.Icon;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,21 +18,38 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CreateActivity  extends AppCompatActivity {
-    private ViewPager mViewPager;
+
+    private ViewPager mViewPagerLeftFood;
+    private ViewPager mViewerRightFood;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create);
-        initPager();
+        initPagerLeftFood();
+        initPagerRightFood();
     }
-    private void initPager() {
-        mViewPager = findViewById(R.id.left_food_pager);
+
+    private void initPagerRightFood() {
+        mViewerRightFood = findViewById(R.id.right_food_pager);
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new OneFragment(), "ONE");
-        adapter.addFragment(new TwoFragment(), "TWO");
+        adapter.addFragment(new ThreeRightFoot(), "Three_Right");
+        adapter.addFragment(new OneRightFoot(), "One_Right");
+        adapter.addFragment(new FiveRightFoot(), "Five_Right");
+        adapter.addFragment(new GrayRightFragment(), "Gray_Right");
+        mViewerRightFood.setAdapter(adapter);
+    }
 
-        mViewPager.setAdapter(adapter);
+    private void initPagerLeftFood() {
+        mViewPagerLeftFood = findViewById(R.id.left_food_pager);
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        adapter.addFragment(new ForLeftFood(), "Four_Left");
+        adapter.addFragment(new TwoLeftFood(), "Two_Left");
+        adapter.addFragment(new SixLeftFood(), "Six_Left");
+        adapter.addFragment(new ForFragment(), "gray_left");
 
+        mViewPagerLeftFood.setAdapter(adapter);
     }
     class ViewPagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> mList = new ArrayList<>();
@@ -58,22 +74,105 @@ public class CreateActivity  extends AppCompatActivity {
             return mTitleList.get(position);
         }
     }
-    public static class OneFragment extends Fragment {
+    public static class ForLeftFood extends Fragment {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
             View v = inflater.inflate(R.layout.left_food_box, container, false);
-            Icon icon = Icon.createWithResource(getContext(), R.drawable.ic_left_footprint).setTint(Color.CYAN);
+            Icon icon = Icon.createWithResource(getContext(), R.drawable.ic_left_footprint).setTint(Color.GREEN);
             ((ImageView) v.findViewById(R.id.feet_left2)).setImageIcon(icon);
+
+
+            Icon iconTwo = Icon.createWithResource(getContext(), R.drawable.ic_number_4);
+            ((ImageView) v.findViewById(R.id.feet_left_index2)).setImageIcon(iconTwo);
+
+
 
 
             return v;
         }
     }
-    public static class TwoFragment extends Fragment {
+    public static class TwoLeftFood extends Fragment {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
             View v = inflater.inflate(R.layout.left_food_box, container, false);
             Icon icon = Icon.createWithResource(getContext(), R.drawable.ic_left_footprint).setTint(Color.RED);
+
+            Icon iconTwo = Icon.createWithResource(getContext(), R.drawable.ic_number_2);
+            ((ImageView) v.findViewById(R.id.feet_left_index2)).setImageIcon(iconTwo);
+
+            ((ImageView) v.findViewById(R.id.feet_left2)).setImageIcon(icon);
+            return v;
+        }
+    }
+    public static class SixLeftFood extends Fragment {
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+            View v = inflater.inflate(R.layout.left_food_box, container, false);
+            Icon icon = Icon.createWithResource(getContext(), R.drawable.ic_left_footprint).setTint(Color.YELLOW);
+
+            Icon iconTwo = Icon.createWithResource(getContext(), R.drawable.ic_number_6);
+            ((ImageView) v.findViewById(R.id.feet_left_index2)).setImageIcon(iconTwo);
+
+            ((ImageView) v.findViewById(R.id.feet_left2)).setImageIcon(icon);
+            return v;
+        }
+    }
+    public static class ForFragment extends Fragment {
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+            View v = inflater.inflate(R.layout.left_food_box, container, false);
+            Icon icon = Icon.createWithResource(getContext(), R.drawable.ic_left_footprint).setTint(Color.GRAY);
+            ((ImageView) v.findViewById(R.id.feet_left2)).setImageIcon(icon);
+            return v;
+        }
+    }
+
+    public static class ThreeRightFoot extends Fragment {
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+            View v = inflater.inflate(R.layout.left_food_box, container, false);
+            Icon icon = Icon.createWithResource(getContext(), R.drawable.ic_right_footprint).setTint(Color.WHITE);
+
+            Icon iconTwo = Icon.createWithResource(getContext(), R.drawable.ic_number_3);
+            ((ImageView) v.findViewById(R.id.feet_left_index2)).setImageIcon(iconTwo);
+
+            ((ImageView) v.findViewById(R.id.feet_left2)).setImageIcon(icon);
+            return v;
+        }
+    }
+
+    public static class OneRightFoot extends Fragment {
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+            View v = inflater.inflate(R.layout.left_food_box, container, false);
+            Icon icon = Icon.createWithResource(getContext(), R.drawable.ic_right_footprint).setTint(Color.BLUE);
+
+            Icon iconTwo = Icon.createWithResource(getContext(), R.drawable.ic_number_1);
+            ((ImageView) v.findViewById(R.id.feet_left_index2)).setImageIcon(iconTwo);
+
+            ((ImageView) v.findViewById(R.id.feet_left2)).setImageIcon(icon);
+            return v;
+        }
+    }
+
+    public static class FiveRightFoot extends Fragment {
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+            View v = inflater.inflate(R.layout.left_food_box, container, false);
+            Icon icon = Icon.createWithResource(getContext(), R.drawable.ic_right_footprint).setTint(Color.MAGENTA);
+
+            Icon iconTwo = Icon.createWithResource(getContext(), R.drawable.ic_number_5);
+            ((ImageView) v.findViewById(R.id.feet_left_index2)).setImageIcon(iconTwo);
+
+            ((ImageView) v.findViewById(R.id.feet_left2)).setImageIcon(icon);
+            return v;
+        }
+    }
+    public static class GrayRightFragment extends Fragment {
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+            View v = inflater.inflate(R.layout.left_food_box, container, false);
+            Icon icon = Icon.createWithResource(getContext(), R.drawable.ic_right_footprint).setTint(Color.GRAY);
             ((ImageView) v.findViewById(R.id.feet_left2)).setImageIcon(icon);
             return v;
         }

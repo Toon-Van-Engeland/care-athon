@@ -109,7 +109,6 @@
             android:layout_height="187dp"
             android:layout_marginTop="492dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/recyclerView"
             app:layout_constraintHorizontal_bias="0.028"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -133,37 +132,6 @@
             app:layout_constraintEnd_toEndOf="@+id/human_main"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/triangle_right" />
-
-        <ImageView
-            android:id="@+id/feet_right"
-            android:layout_width="154dp"
-            android:layout_height="190dp"
-            app:layout_constraintBottom_toBottomOf="@+id/rightbox"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.564"
-            app:layout_constraintStart_toStartOf="@+id/rightbox"
-            app:layout_constraintTop_toTopOf="@+id/rightbox"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/ic_right_footprint" />
-
-        <ImageView
-            android:id="@+id/feet_right_index"
-            android:layout_width="56dp"
-            android:layout_height="81dp"
-            android:layout_marginTop="108dp"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintEnd_toEndOf="@+id/rightbox"
-            app:layout_constraintTop_toTopOf="@+id/rightbox"
-            app:srcCompat="@drawable/circle" />
-
-        <ImageView
-            android:id="@+id/feet_right_symbol"
-            android:layout_width="63dp"
-            android:layout_height="81dp"
-            android:layout_marginTop="48dp"
-            app:layout_constraintStart_toStartOf="@+id/feet_right"
-            app:layout_constraintTop_toTopOf="@+id/feet_right"
-            app:srcCompat="@drawable/circle" />
 
         <ImageView
             android:id="@+id/ear_left"
@@ -250,6 +218,15 @@
             app:layout_constraintHorizontal_bias="0.304"
             app:layout_constraintStart_toStartOf="@+id/leftbox"
             app:layout_constraintTop_toTopOf="@+id/leftbox" />
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/right_food_pager"
+            android:layout_width="170dp"
+            android:layout_height="160dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/rightbox"
+            app:layout_constraintStart_toStartOf="@+id/rightbox"
+            app:layout_constraintTop_toTopOf="@+id/rightbox" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
