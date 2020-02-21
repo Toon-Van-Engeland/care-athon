@@ -57,11 +57,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/be/pxl/g_karate/api/ExerciseRepo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="320">
-              <caret line="37" column="66" selection-start-line="37" selection-start-column="66" selection-end-line="37" selection-end-column="66" />
+            <state relative-caret-position="133">
+              <caret line="32" column="21" selection-start-line="32" selection-start-column="21" selection-end-line="32" selection-end-column="21" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#2143#2144#0" expanded="true" />
@@ -71,16 +71,13 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/be/pxl/g_karate/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="105" selection-start-line="105" selection-end-line="105" />
+            <state relative-caret-position="-425">
+              <caret line="215" column="8" selection-start-line="215" selection-start-column="8" selection-end-line="215" selection-end-column="8" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1485#1524#0" />
-                <element signature="e#2040#2583#0" />
-                <element signature="e#2747#2911#1" />
               </folding>
             </state>
           </provider>
@@ -90,7 +87,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/AndroidManifest.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="323">
-              <caret line="19" column="19" lean-forward="true" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
+              <caret line="20" column="51" selection-start-line="20" selection-start-column="51" selection-end-line="20" selection-end-column="51" />
             </state>
           </provider>
           <provider editor-type-id="android-manifest" />
@@ -99,17 +96,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/be/pxl/g_karate/api/models/Exercise.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
-              <caret line="11" column="41" selection-start-line="11" selection-start-column="41" selection-end-line="11" selection-end-column="41" />
+            <state relative-caret-position="174">
+              <caret line="13" column="41" selection-start-line="13" selection-start-column="41" selection-end-line="13" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#473#474#0" expanded="true" />
-                <element signature="e#521#522#0" expanded="true" />
-                <element signature="e#576#577#0" expanded="true" />
-                <element signature="e#625#626#0" expanded="true" />
-                <element signature="e#676#677#0" expanded="true" />
-                <element signature="e#721#722#0" expanded="true" />
-                <element signature="e#773#774#0" expanded="true" />
                 <element signature="e#819#820#0" expanded="true" />
               </folding>
             </state>
@@ -141,8 +131,8 @@
         <option value="$PROJECT_DIR$/src/main/java/be/pxl/g_karate/api/ApiProxy.java" />
         <option value="$PROJECT_DIR$/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/src/main/java/be/pxl/g_karate/api/models/Exercise.java" />
-        <option value="$PROJECT_DIR$/src/main/java/be/pxl/g_karate/MainActivity.java" />
         <option value="$PROJECT_DIR$/src/main/java/be/pxl/g_karate/api/ExerciseRepo.java" />
+        <option value="$PROJECT_DIR$/src/main/java/be/pxl/g_karate/MainActivity.java" />
       </list>
     </option>
   </component>
@@ -248,7 +238,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="Pixel_3_API_27" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-02-21T09:44:31.700Z" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-02-21T09:57:40.355Z" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.project.structure.last.selected" value="SDK Location" />
     <property name="android.project.structure.proportion" value="0.15" />
@@ -359,7 +349,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="1198" height="1087" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
       <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.2311072" />
@@ -370,14 +359,14 @@
       <window_info id="Designer" order="6" />
       <window_info id="Resources Explorer" order="7" />
       <window_info id="Capture Tool" order="8" />
-      <window_info active="true" anchor="bottom" x="1119" y="31" width="800" height="1048" id="Run" order="0" sideWeight="0.6438356" type="WINDOWED" visible="true" weight="0.4832285" />
+      <window_info anchor="bottom" x="1119" y="31" width="800" height="1048" id="Run" order="0" sideWeight="0.6438356" type="WINDOWED" visible="true" weight="0.4832285" />
       <window_info anchor="bottom" id="Logcat" order="1" sideWeight="0.72495604" weight="0.43815514" />
       <window_info anchor="bottom" id="TODO" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49472758" visible="true" weight="0.32914045" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49472758" weight="0.32914045" />
       <window_info anchor="bottom" id="Terminal" order="4" sideWeight="0.49946696" weight="0.32917964" />
-      <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.5052724" side_tool="true" visible="true" weight="0.32914045" />
+      <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.50615114" side_tool="true" visible="true" weight="0.3322851" />
       <window_info anchor="bottom" id="Version Control" order="6" sideWeight="0.49941793" weight="0.32914045" />
-      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.49440297" weight="0.3322851" />
+      <window_info active="true" anchor="bottom" id="Build" order="7" sideWeight="0.49384886" visible="true" weight="0.3322851" />
       <window_info anchor="bottom" id="Android Profiler" order="8" />
       <window_info anchor="right" id="Device File Explorer" order="0" side_tool="true" />
       <window_info anchor="right" id="Capture Analysis" order="1" />
@@ -465,7 +454,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
-          <caret line="19" column="19" lean-forward="true" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
+          <caret line="20" column="51" selection-start-line="20" selection-start-column="51" selection-end-line="20" selection-end-column="51" />
         </state>
       </provider>
       <provider editor-type-id="android-manifest" />
@@ -500,31 +489,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/be/pxl/g_karate/api/models/Exercise.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="11" column="41" selection-start-line="11" selection-start-column="41" selection-end-line="11" selection-end-column="41" />
+        <state relative-caret-position="174">
+          <caret line="13" column="41" selection-start-line="13" selection-start-column="41" selection-end-line="13" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#473#474#0" expanded="true" />
-            <element signature="e#521#522#0" expanded="true" />
-            <element signature="e#576#577#0" expanded="true" />
-            <element signature="e#625#626#0" expanded="true" />
-            <element signature="e#676#677#0" expanded="true" />
-            <element signature="e#721#722#0" expanded="true" />
-            <element signature="e#773#774#0" expanded="true" />
             <element signature="e#819#820#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/be/pxl/g_karate/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="105" selection-start-line="105" selection-end-line="105" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1485#1524#0" />
-            <element signature="e#2040#2583#0" />
-            <element signature="e#2747#2911#1" />
           </folding>
         </state>
       </provider>
@@ -542,12 +511,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/be/pxl/g_karate/api/ExerciseRepo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="37" column="66" selection-start-line="37" selection-start-column="66" selection-end-line="37" selection-end-column="66" />
+        <state relative-caret-position="133">
+          <caret line="32" column="21" selection-start-line="32" selection-start-column="21" selection-end-line="32" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#2143#2144#0" expanded="true" />
             <element signature="e#2174#2175#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/be/pxl/g_karate/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-425">
+          <caret line="215" column="8" selection-start-line="215" selection-start-column="8" selection-end-line="215" selection-end-column="8" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

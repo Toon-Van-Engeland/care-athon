@@ -156,5 +156,62 @@
         app:layout_constraintEnd_toEndOf="@+id/human_main"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/triangle_right" />
+
+    <ImageView
+        android:id="@+id/feet_right"
+        android:layout_width="154dp"
+        android:layout_height="190dp"
+        app:layout_constraintBottom_toBottomOf="@+id/rightbox"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.564"
+        app:layout_constraintStart_toStartOf="@+id/rightbox"
+        app:layout_constraintTop_toTopOf="@+id/rightbox"
+        app:srcCompat="@drawable/ic_right_footprint" />
+
+    <ImageView
+        android:id="@+id/feet_right_index"
+        android:layout_width="56dp"
+        android:layout_height="81dp"
+        android:layout_marginTop="104dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/rightbox"
+        app:layout_constraintTop_toTopOf="@+id/rightbox"
+        app:srcCompat="@drawable/circle" />
+
+    <ImageView
+        android:id="@+id/feet_left"
+        android:layout_width="163dp"
+        android:layout_height="164dp"
+        app:layout_constraintBottom_toBottomOf="@+id/leftbox"
+        app:layout_constraintEnd_toEndOf="@+id/leftbox"
+        app:layout_constraintStart_toStartOf="@+id/leftbox"
+        app:layout_constraintTop_toTopOf="@+id/leftbox"
+        app:srcCompat="@drawable/ic_left_footprint" />
+
+    <ImageView
+        android:id="@+id/feet_left_symbol"
+        android:layout_width="63dp"
+        android:layout_height="81dp"
+        android:layout_marginTop="36dp"
+        app:layout_constraintEnd_toEndOf="@+id/feet_left"
+        app:layout_constraintTop_toTopOf="@+id/feet_left"
+        app:srcCompat="@drawable/circle" />
+
+    <ImageView
+        android:id="@+id/feet_right_symbol"
+        android:layout_width="63dp"
+        android:layout_height="81dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintStart_toStartOf="@+id/feet_right"
+        app:layout_constraintTop_toTopOf="@+id/feet_right"
+        app:srcCompat="@drawable/circle" />
+
+    <ImageView
+        android:id="@+id/feet_left_index"
+        android:layout_width="56dp"
+        android:layout_height="81dp"
+        app:layout_constraintBottom_toBottomOf="@+id/feet_left"
+        app:layout_constraintStart_toStartOf="@+id/feet_left"
+        app:srcCompat="@drawable/circle" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
