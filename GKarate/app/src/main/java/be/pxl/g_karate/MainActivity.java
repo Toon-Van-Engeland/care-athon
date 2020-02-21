@@ -310,7 +310,7 @@ public class MainActivity extends AppCompatActivity {
                 leftFootIconView.setImageIcon(Icon.createWithResource(this, iconMap.get(currentPlaceLeftFoot)));
             }
         } else {
-            leftFootView.setImageIcon(Icon.createWithResource(this, R.drawable.ic_right_footprint).setTint(Color.GRAY));
+            leftFootView.setImageIcon(Icon.createWithResource(this, R.drawable.ic_left_footprint).setTint(Color.GRAY));
             leftFootNumberView.setImageIcon(null);
             leftFootIconView.setImageIcon(null);
         }
