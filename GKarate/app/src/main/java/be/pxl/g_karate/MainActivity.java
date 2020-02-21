@@ -8,9 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
-import java.util.ArrayList;
 import java.util.Hashtable;
-import java.util.List;
 import java.util.Map;
 
 import be.pxl.g_karate.api.ApiProxy;
@@ -24,9 +22,6 @@ public class MainActivity extends AppCompatActivity {
     Map<Integer, Integer> iconMap;
     Map<Integer, Integer> colorMap;
 
-    //List<Integer> handMomventsLeft;
-    //List<Integer> handMomventsRight;
-
     ImageView previousGestureLeft;
     ImageView previousGestureRight;
 
@@ -39,6 +34,12 @@ public class MainActivity extends AppCompatActivity {
     ImageView rightFootIconView;
 
     int currentPlaceInList;
+
+    int previousHandLeft;
+    int previousHandRight;
+
+    boolean iconOnFeetEnabled = true;
+    boolean colorOnFeetEnabled = true;
 
     Exercise exercise1 = new Exercise(1);
     ExerciseRepo repo = new ExerciseRepo(new ApiProxy());
@@ -55,6 +56,9 @@ public class MainActivity extends AppCompatActivity {
         rightFootView = findViewById(R.id.feet_right);
         rightFootIconView = findViewById(R.id.feet_right_symbol);
         rightFootNumberView = findViewById(R.id.feet_right_index);
+
+        iconOnFeetEnabled = getIntent().getBooleanExtra("iconEnabled", true);
+        colorOnFeetEnabled = getIntent().getBooleanExtra("colorEnabled", true);
 
         circlesOnHumanBody = new Hashtable<>();
         circlesOnHumanBody.put(1, R.id.ear_left);
@@ -93,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
         colorMap.put(6, Color.rgb(251,255,0));
 
         exercise1.addHandMovementLeft(5);
-        exercise1.addHandMovementLeft(6);
+        exercise1.addHandMovementLeft(5);
         exercise1.addHandMovementLeft(7);
         exercise1.addHandMovementLeft(3);
         exercise1.addHandMovementLeft(-1);
@@ -120,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
         exercise1.addFootMovementsRight(1);
         exercise1.addFootMovementsRight(3);
 
-        repo.addExercise(exercise1);
+//        repo.addExercise(exercise1);
 
         currentPlaceInList = 0;
 
@@ -177,25 +181,36 @@ public class MainActivity extends AppCompatActivity {
         if (currentPlaceLeft != -1) {
             ImageView currentGestureLeft = findViewById(circlesOnHumanBody.get(currentPlaceLeft));
             currentGestureLeft.setImageIcon(Icon.createWithResource(this, numbersMap.get(currentPlaceLeft)));
-            currentGestureLeft.setBackgroundResource(R.drawable.circle_red);
+            if (previousHandLeft == currentPlaceLeft) {
+                currentGestureLeft.setBackgroundResource(R.drawable.circle_red);
+            } else {
+                currentGestureLeft.setBackgroundResource(R.drawable.circle_red_yellow_border);
+            }
             currentGestureLeft.setVisibility(View.VISIBLE);
-
             previousGestureLeft = currentGestureLeft;
         } else {
             previousGestureLeft = null;
         }
 
+        previousHandLeft = currentPlaceLeft;
+
         //Set right icon and cirkel on if gesture is needed
         if (currentPlaceRight != -1) {
             ImageView currentGestureRight = findViewById(circlesOnHumanBody.get(currentPlaceRight));
             currentGestureRight.setImageIcon(Icon.createWithResource(this, numbersMap.get(currentPlaceRight)));
-            currentGestureRight.setBackgroundResource(R.drawable.circle_blue);
+            if (previousHandRight == currentPlaceRight) {
+                currentGestureRight.setBackgroundResource(R.drawable.circle_blue);
+            } else {
+                currentGestureRight.setBackgroundResource(R.drawable.circle_blue_yellow_border);
+            }
             currentGestureRight.setVisibility(View.VISIBLE);
 
             previousGestureRight = currentGestureRight;
         } else {
             previousGestureRight = null;
         }
+
+        previousHandRight = currentPlaceRight;
     }
 
     public void handleFootMovements() {
@@ -208,9 +223,15 @@ public class MainActivity extends AppCompatActivity {
 
         //Set all icons of the left foot
         if (currentPlaceLeftFoot != -1) {
-            leftFootView.setImageIcon(Icon.createWithResource(this, R.drawable.ic_left_footprint).setTint(colorMap.get(currentPlaceLeftFoot)));
+            Icon icon = Icon.createWithResource(this, R.drawable.ic_left_footprint).setTint(colorMap.get(currentPlaceLeftFoot));
+            if (!colorOnFeetEnabled) {
+                icon.setTint(Color.rgb(0,0,0));
+            }
+            leftFootView.setImageIcon(icon);
             leftFootNumberView.setImageIcon(Icon.createWithResource(this, numbersMap.get(currentPlaceLeftFoot)));
-            leftFootIconView.setImageIcon(Icon.createWithResource(this, iconMap.get(currentPlaceLeftFoot)));
+            if (iconOnFeetEnabled) {
+                leftFootIconView.setImageIcon(Icon.createWithResource(this, iconMap.get(currentPlaceLeftFoot)));
+            }
         } else {
             leftFootView.setImageIcon(null);
             leftFootNumberView.setImageIcon(null);
@@ -219,9 +240,15 @@ public class MainActivity extends AppCompatActivity {
 
         //Set all icons of the right foot
         if (currentPlaceRightFoot != -1) {
-            rightFootView.setImageIcon(Icon.createWithResource(this, R.drawable.ic_right_footprint).setTint(colorMap.get(currentPlaceRightFoot)));
+            Icon icon = Icon.createWithResource(this, R.drawable.ic_right_footprint).setTint(colorMap.get(currentPlaceRightFoot));
+            if(!colorOnFeetEnabled) {
+                icon.setTint(Color.rgb(0,0,0));
+            }
+            rightFootView.setImageIcon(icon);
             rightFootNumberView.setImageIcon(Icon.createWithResource(this, numbersMap.get(currentPlaceRightFoot)));
-            rightFootIconView.setImageIcon(Icon.createWithResource(this, iconMap.get(currentPlaceRightFoot)));
+            if(iconOnFeetEnabled) {
+                rightFootIconView.setImageIcon(Icon.createWithResource(this, iconMap.get(currentPlaceRightFoot)));
+            }
         } else {
             rightFootView.setImageIcon(null);
             rightFootNumberView.setImageIcon(null);
