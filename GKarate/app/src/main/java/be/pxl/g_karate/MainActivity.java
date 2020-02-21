@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.graphics.Color;
 import android.graphics.drawable.Icon;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -35,13 +36,15 @@ public class MainActivity extends AppCompatActivity {
 
     int currentPlaceInList;
 
+    Exercise exercise1 = new Exercise();
+    Exercise test;
+
     int previousHandLeft;
     int previousHandRight;
 
     boolean iconOnFeetEnabled = true;
     boolean colorOnFeetEnabled = true;
 
-    Exercise exercise1 = new Exercise(1);
     ExerciseRepo repo = new ExerciseRepo(new ApiProxy());
 
     @Override
@@ -108,6 +111,54 @@ public class MainActivity extends AppCompatActivity {
         exercise1.addHandMovementRight(4);
         exercise1.addHandMovementRight(8);
 
+        repo.addExercise(exercise1);
+/*
+        handMomventsLeft.add(1);
+        handMomventsLeft.add(2);
+        handMomventsLeft.add(5);
+        handMomventsLeft.add(6);
+        handMomventsLeft.add(8);
+        handMomventsLeft.add(3);
+        handMomventsLeft.add(4);
+        handMomventsLeft.add(7);
+
+        handMomventsRight.add(6);
+        handMomventsRight.add(7);
+        handMomventsRight.add(6);
+        handMomventsRight.add(-1);
+        handMomventsRight.add(2);
+        handMomventsRight.add(7);
+        handMomventsRight.add(5);
+        handMomventsRight.add(8);
+*/
+        currentPlaceInList = 0;
+
+        try {
+            Thread dataThread = new Thread(() -> {
+                try {
+                    repo.getExercises();
+                } catch (Exception e) {
+                    System.err.println(e);
+                }
+            });
+            dataThread.start();
+            dataThread.join();
+            System.out.println("EXERCISE LIST MAIN = " + ExerciseRepo.getExercisesList().size());
+            test = ExerciseRepo.getExercisesList().get(2);
+            Thread uiThread = new Thread(() -> {
+                try {
+                    while (currentPlaceInList < test.getHandMovementsLeft().size()) {
+                        runOnUiThread(this::handleHandMovements);
+                        Thread.sleep(5_000);
+                        currentPlaceInList++;
+                    }
+                } catch (Exception e) {
+                    System.err.println(e);
+                }
+            });
+        } catch (InterruptedException e) {
+            System.err.println(e);
+        }
         exercise1.addFootMovementsLeft(2);
         exercise1.addFootMovementsLeft(-1);
         exercise1.addFootMovementsLeft(4);
@@ -137,11 +188,10 @@ public class MainActivity extends AppCompatActivity {
                     Thread.sleep(5_000);
                     currentPlaceInList++;
                 }
+            } catch (Exception e) {
+
             }
-            catch (Exception e){
-                System.err.println(e);
-            }
-        }).start();
+        });
     }
 
     public void handleHandMovements() {
