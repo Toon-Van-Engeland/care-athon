@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".OpenActivity">
+    <ImageView
+        android:onClick="easy_click"
+        android:contentDescription="@string/easy"
+        android:background="@drawable/ic_easy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <ImageView
+        android:onClick="medium_click"
+        android:contentDescription="@string/medium"
+        android:background="@drawable/ic_medium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <ImageView
+        android:onClick="difficult_click"
+        android:contentDescription="@string/difficult"
+        android:background="@drawable/ic_difficult"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</LinearLayout>
