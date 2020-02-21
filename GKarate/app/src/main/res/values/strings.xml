@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">G-Karate</string>
+    <string name="create_exercise">Create exercise</string>
+    <string name="difficult">difficult</string>
+    <string name="medium">medium</string>
+    <string name="easy">easy</string>
 </resources>
