@@ -162,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
         handMomventsLeft.add(3);
         handMomventsLeft.add(4);
         handMomventsLeft.add(7);
-
+        test
         handMomventsRight.add(6);
         handMomventsRight.add(7);
         handMomventsRight.add(6);
